@@ -1,0 +1,7 @@
+pyinstaller manual
+
+pyinstaller -w -F 파일명.py
+
+datas=[('GUI파일명.ui', '.')],
+
+pyinstaller 파일명.spec
