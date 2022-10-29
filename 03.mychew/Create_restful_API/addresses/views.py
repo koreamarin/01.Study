@@ -5,6 +5,8 @@ from django.views.decorators.csrf import csrf_exempt
 from rest_framework.parsers import JSONParser
 from .serializers import AddressesSerializer
 from .models import Addresses
+from django.contrib.auth.models import User                 # 로그인 기능을 만들 때 
+from django.contrib.auth import authenticate
 
 # Create your views here.
 @csrf_exempt
@@ -47,15 +49,21 @@ def address(request, pk) :
 
 @csrf_exempt
 def login(request) :
-        
-    if request.method == 'POST' :
-        data = JSONParser().parse(request)              # request로 받은 JSON을 JSONParser로 읽어서 data에 저장 함. 변수 data에 저장된 데이터는 딕셔너리 형태임. JSONParser를 사용하는 이유는 인코딩형식이 달라서 일것으로 추측.
-        search_name = data['name']                      # 변수 data에서 Key인 name의 Value만을 출력.
-        print(search_name)
-        obj = Addresses.objects.get(name=search_name)           # POST형식으로 받은 request에서 name의 value 값과 같은 name의 테이블을 model에서 찾아 obj에 넣는다. 
-        print(obj.phone_number)                         # model에서 찾은 name의 value값과 같은 테이블에서 phone_number을 print로 출력한다.
+    if request.method == 'POST':
+        request_post = request.POST
+        login_id = request_post['userid']
+        login_pw = request_post['userpw']
 
-        if data['phone_number'] == obj.phone_number :       # request에서 post형식으로 받아 data에 넘긴 phone_number와 모델에서 얻은 obj의 phone_number가 같다면 아래 문장을 실행.
-            return HttpResponse("<div>로그인성공</div>",status=200)
-        else :
-            return HttpResponse(status=400)
+        result = authenticate(username=login_id, password=login_pw)     # 이 함수에 id와 pw를 넣어서 로그인에 성공하면 id를 반환, 로그인에 실패하면 None을 반환한다.
+    
+        print(f'result = {result}')
+        
+        if result :
+            print("로그인성공")                                         # result에 값이 들어가서 True로 판단되면 로그인성공 메세지출력
+            return HttpResponse("<div>로그인성공</div>",status=200)     
+        else :                                                          # result에 값이 None이 들어가 False로 판단되면 로그인실패 메세지출력
+            print("로그인실패") 
+            return HttpResponse(status=401)
+
+    elif request.method == 'GET' :
+        return render(request, 'addresses/login.html')              # setting에 보면 TEMPLATES의 'DIRS': [os.path.join(BASE_DIR,'templates')]에다가 템플릿 기본경로를 설정해둬서 이 문장에서 templates 경로를 넣지 않았다.
