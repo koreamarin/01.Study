@@ -19,6 +19,9 @@ def address_list(request) :
     elif request.method == 'POST' :                             
         data = JSONParser().parse(request)                      # POST로 받은 JSON형식 딕셔너리 데이터를
         serializer = AddressesSerializer(data=data)
+        print(data)
+        print()
+        print(serializer)
         if serializer.is_valid():
             serializer.save()
             return JsonResponse(serializer.data, status=201)
