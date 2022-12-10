@@ -94,5 +94,5 @@ def vote(request, question_id):
         # user hits the Back button.
         return HttpResponseRedirect(resolve_url('polls:results', question.id))
         # return HttpResponseRedirect(reverse('polls:results', args = (question.id,)))
-        # HttpResponseRedirect는 Post로 호출된 경우, 성공적으로 반환하였을 때 사용하는 응답 클래스이다. reverse와 resolve_url은 render와 다르게 url의 하드코딩을 하지않고 urls.py의 name으로부터 불러와서 url을 연결하므로 유지보수가 쉬워진다. 다만 reverse는 하드코딩 url은 쓰지못하고, resolve_url은 하드코딩도 쓸 수 있다.
+        # HttpResponseRedirect는 Post로 호출된 경우, 성공적으로 반환하였을 때 사용하는 응답 클래스이다. reverse와 resolve_url은 redirect 다르게 url의 하드코딩을 하지않고 urls.py의 name으로부터 불러와서 url을 연결하므로 유지보수가 쉬워진다. 다만 reverse는 하드코딩 url은 쓰지못하고, resolve_url은 하드코딩도 쓸 수 있다.
 
