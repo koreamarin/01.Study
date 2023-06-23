@@ -1,0 +1,40 @@
+
+
+
+GET! POST!                  api/v1/rooms                    // GET : 방 리스트 가져오기,        POST : 방 생성
+GET! PUT! DELET!            api/v1/rooms/1                  // GET : 방 상세 가져오기,          PUT : 방 수정           DELETE : 방 삭제
+GET! POST!                  api/v1/rooms/1/reviews          // GET : 방의 리뷰 가져오기,        POST : 방의 리뷰 생성
+GET! POST!                  api/v1/rooms/amenities          // GET : 편의시설 리스트 가져오기,  POST : 편의시설 생성
+GET! PUT! DELETE!           api/v1/rooms/amenities/1        // GET : 편의시설 상세 가져오기,    PUT : 편의시설 수정,    DELETE : 편의시설 삭제
+POST!                       api/v1/rooms/1/photos           //                                  POST : 방 사진 업로드
+DELETE!                     api/v1/medias/photos/1          // DELETE : 방 또는 경험 사진 삭제
+GET!  POST!                 api/v1/rooms/1/bookings         // GET : 방의 예약 가져오기,        POST : 방의 예약 생성
+
+
+### Wishlists
+GET! POST!                  api/v1/wishlists                // GET : 위시리스트 리스트 가져오기, POST : 위시리스트 생성
+GET! PUT! DELETE!           api/v1/wishlists/1              // GET : 위시리스트 상세 가져오기,   PUT : 위시리스트 수정,   DELETE : 위시리스트 삭제
+PUT!                        api/v1/wishlists/1/rooms/1      // PUT : 위시리스트에 방 추가, 삭제
+is_liked!
+
+### Users
+GET! PUT!                   api/v1/me                       // GET : 내 정보 가져오기, PUT : 내 정보 수정
+POST!                       api/v1/users                    // POST : 회원가입
+GET!                        api/v1/users/@username          // GET : 다른 회원 유저 정보 보기
+GET                         api/v1/users/@username/reviews  // GET : 해당 user가 쓴 리뷰 보기    # 직접 작성
+PUT!                        api/v1/users/change-password    // POST : 비밀번호 변경
+POST!                       api/v1/users/log-in             // POST : 로그인
+
+
+
+### Experiences
+
+GET POST                    /experiences
+GET PUT DELETE              /experiences/1
+GET                         /experiences/1/perks
+GET POST                    /perks
+GET PUT DELETE              /perks/1
+GET POST                    /experiences/1/bookings
+GET PUT DELETE              /experiences/1/bookings/1
+GET POST                    /rooms/1/bookings
+GET PUT DELETE              /rooms/1/bookings/1

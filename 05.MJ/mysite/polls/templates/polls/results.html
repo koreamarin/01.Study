@@ -1,0 +1,9 @@
+<h1>{{ question.question_text }}</h1>
+
+<ul>
+{% for choice in question.choice_set.all %}
+    <li>{{ choice.choice_text }} -- {{ choice.votes }} vote{{ choice.votes|pluralize }}</li>    <!-- vote{{ choice.votes|pluralize }}는 or 기능인데 choice.votes가 단수인경우에는 vote와 같이 단수처리, 복수인경우에는 votes와 같이 복수처리를 해주는 장고의 기능이다. -->
+{% endfor %}
+</ul>
+
+<a href="{% url 'polls:detail' question.id %}">Vote again?</a>

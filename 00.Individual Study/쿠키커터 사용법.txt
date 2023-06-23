@@ -1,0 +1,5 @@
+쿠키커터 설치 : pip install cookiecutter
+
+쿠키커터 생성 : (생성을 원하는 디렉토리로 가서)cookiecutter https://github.com/pydanny/cookiecutter-django 입력
+
+무언가 설치해줘야함 : pip install -r requirements/local.txt

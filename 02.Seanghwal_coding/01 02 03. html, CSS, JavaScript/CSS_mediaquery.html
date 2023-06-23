@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="urf-8">
+        <title></title>
+        <style>
+            div {
+                border:10px solid green;
+                font-size:60px;
+            }
+
+            @media(max-width:800px) {
+                .large {
+                    display:none;
+                }
+            }
+
+            @media(min-width:800px) {
+                .small {
+                    display:none;
+                }
+            }
+
+            @media(max-width:500px), (min-width: 800px) {
+                .middle {
+                    display:none;
+                }
+            }
+
+
+        </style>
+    </head>
+    <body>
+        <div class="large">
+            저는 넓은 화면에서만 보입니다.
+        </div>
+        <div class="small">
+            저는 작은 화면에서만 보입니다.
+        </div>
+        <div class="middle">
+            저는 중간 화면에서만 보입니다.
+        </div>
+
+
+    </body>
+</html>

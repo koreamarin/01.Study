@@ -1,0 +1,13 @@
+pyinstaller manual
+
+옵션  : 	-F -> 하나의 파일로 만드는 옵션
+	-w -> 콘솔창을 띄우지 않는 옵션
+
+
+순서 :
+
+pyinstaller -w -F 파일명.py
+
+datas=[('GUI파일명.ui', '.')],
+
+pyinstaller 파일명.spec

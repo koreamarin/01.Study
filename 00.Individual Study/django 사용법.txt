@@ -1,0 +1,150 @@
+드장고 설치                                              python -m pip install django
+
+드장고 서브명령 보기(사용방법 보기)                        django-admin
+
+드장고 프로젝트 생성(맨 처음시작할떄 쓰는거)                django-admin startproject (프로젝트이름) (설치할디렉토리)
+현재 디렉토리에 myproject라는 드장고 프로젝트 생성          django-admin startproject myproject .  을 입력하면 현재 디렉토리에 myproject라는 드장고 프로젝트가 생성된다. .을 입력하지 않으면 myproject라는 폴더를 생성하고, 그 속에 myproject라는 프로젝트를 생성한다.
+
+-------------------------------------------------------------------------------------------------------
+
+드장고 실행에 관한 명령어 보기                             python manage.py
+
+드장고 server 실행                                        python manage.py runserver
+드장고 server 실행할 때 다른 포트나 IP로 실행               python manage.py runserver (사용하고싶은 IP or 포트넘버)
+                                                        ex) python manage.py runserver 123.123.123.1
+                                                         ex) python manage.py runserver 8888
+                                                         ex) python manage.py runserver 123.123.123.1:9999
+
+드장고 app 생성                                          django-admin startapp (앱이름)
+
+드장고 migration하기 전 변경사항 있는지 확인 or medel에 table을 생성하기 위한 설계도를 생성.               python manage.py makemigrations
+드장고 migration하기, INSTALLED_APPS를 추가하거나 model의 table을 생성하기 위한 migration작업.           python manage.py migrate
+
+드장고 admin site에서 로그인 할 관리자 계정생성           py manage.py createsuperuser
+
+
+드장고 restframwork 설치                                pip install djangorestframework
+드장고 markdown 설치                                    pip install markdown
+드장고 django-filter 설치                               pip install django-filter
+
+---------------------------------------------------------------------------
+settings.py 파일 설명
+
+DEBUG = True                                            서버 디버그 할 수 있게 해주는 코드. False 하면 개인 로컬서버 안만들어짐.
+ALLWED_HOSTS                                            ['127.1.1.1']하면 이에 해당하는 IP주소만 허용해줌. 비워두거나 ['*']로 하면 모두에게 OPEN된 서버가 됨.
+
+
+
+
+
+------------------------------------------------------------------------------
+Restful api
+디자인규약
+URL에 대한 통일성을 갖자는 규약임.
+0. 행위를 포함하지 않는다.
+    Bad Example http://khj93.com/delete-post/1  
+    Good Example  http://khj93.com/post/1
+
+1. CRUD를 할 때 URL로 CRUD를 처리하지 말고, URL은 데이터 접근만하고, 어떤 방식으로 서버에 접근했냐고 CRUD를 처리하자는 규약이 포함되어 있음.
+    Create  : Post방식을 사용
+    Read    : get방식을 사용
+    Update  : put방식을 사용
+    Delete  : delete 방식을 사용.
+
+2. (-)하이픈을 사용하라 (_)밑줄 하이픈은 사용하지 않는다.
+3. URL 경로에는 소문자가 적합하므로 대문자사용은 지양한다.
+4. URL에 (/)슬래시는 계층 관계를 나타내는데 사용한다.
+    ex) http://restapi.example.com/houses/apartments
+    ex) http://restapi.example.com/animals/mammals/whales
+
+5. URL 마지막에는 (/)슬래시를 포함하지 않는다.
+    ex) http://restapi.example.com/houses/apartments    (O)
+    ex) http://restapi.example.com/houses/apartments/   (X)
+
+6. 파일확장자는 URL에 포함시키지 않는다.
+    ex) http://restapi.example.com/members/soccer/345/photo.jpg     (X)
+    ex) http://restapi.example.com/members/soccer/345/photo         (O)
+
+    6-1. REST API에서는 메시지 바디 내용의 포맷을 나타내기 위한 파일 확장자를 URI 안에 포함시키지 않는다. Accept header를 사용하도록 한다.
+        ex) GET / members/soccer/345/photo HTTP/1.1 Host: restapi.example.com Accept: image/jpg
+
+----------------------------------------------------------------------------------------
+응답 상태코드
+
+상태코드            내용
+200                 클라이언트의 요청을 정상적으로 수행함
+201                 클라이언트가 어떠한 리소스 생성을 요청, 해당 리소스가 성공적으로 생성됨(POST를 통한 리소스 생성 작업 시)
+204                 No Content, 클라이언트의 요청은 정상적, 하지만 컨텐츠를 제공하지 않는다.. Delete를 한 후의 응답에 적합하다. Delete의 응답에 삭제를 정상적으로 수행한 후 더이상응답할 컨텐츠가 없을 때 204로 응답한다.잘 쓰이지 않는 응답코드.
+
+400                 클라이언트의 요청이 부적절 할 경우 사용하는 응답 코드
+401                 클라이언트가 인증되지 않은 상태에서 보호된 리소스를 요청했을 때 사용하는 응답 코드 (로그인 하지 않은 유저가 로그인 했을 때, 요청 가능한 리소스를 요청했을 때)
+403                 유저 인증상태와 관계 없이 응답하고 싶지 않은 리소스를 클라이언트가 요청했을 때 사용하는 응답 코드 (403 보다는 400이나 404를 사용할 것을 권고. 403 자체가 리소스가 존재한다는 뜻이기 때문에)
+404                 페이지를 찾을 수 없음. 존재하지 않는 경로. 두 가지로 해석된다. 1. 경로가 존재하지 않음. 2. 자원이 존재하지 않음.
+405                 클라이언트가 요청한 리소스에서는 사용 불가능한 Method를 이용했을 경우 사용하는 응답 코드
+
+301                 클라이언트가 요청한 리소스에 대한 URI가 변경 되었을 때 사용하는 응답 코드 (응답 시 Location header에 변경된 URI를 적어 줘야 합니다.)
+500                 서버에 문제가 있을 경우 사용하는 응답 코드
+
+
+----------------------------------------------------------------------------------------------------------------------------------------------------------------
+Model (Django의 DB관리 기능)
+
+드장고에서는 DB의 TABLE을 MODEL이라고 한다.
+DB에서 TABLE을 만들고, Framework랑 연동하고 자시고 할 필요 없이
+Django에서는 DB와 연동 후 MODEL을 만들면 자동적으로 연동된 DB에 DJango에서 만들었던 Model로 Table을 만들어 주고, 연동까지 된다.
+데이터롤 DB로부터 호출할 때도 연동된 Model과 Table에서 자동적으로 호출이 가능하다.
+원래라면 Mysql API를 통해 SQL문을 써서 불러오고 자시고 해야하는데 그 과정을 함수로서 사용할 수 있게끔 만든 편리한 기능이다.
+
+굳이 Model 형식을 배우고 싶지 않아면 배우지 않아도 된다. Model 형식문을 배워봤자 Django에서밖에 쓸 수 없기 때문이다.
+SQL문과 그 연동하는 API를 배우면 다른 언어에서도 써먹을 수 있기 때문.
+배우면 편리하다는 장점이 있다.
+
+rest framework를 만들 때 순서가 있음.(MTV를 만들면 된다. M: Model, T:Template, V:View)
+1. Model을 만든다.
+
+
+
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------
+django Model API 사용법
+Model API는 .py 파일에 써 놓아서 실행해도 되고, py manage.py shell에 들어가서 cmd 삳태에서 python 명령어로 입력하여 실행해도 된다.
+보통 API 실행문을 테스트하기 위해서 CMD 환경에서 테스트하고, 코드를 작성할 때에는 .py 파일에 입력하여 사용한다.
+
+사용하기 전 model을 불러와야 한다.
+from 앱이름.models import 모델이름                  ex) from myapp.models import Student
+
+장고의 시간대를 불러오고싶다면 아래 라이브러리를 import한다.
+from django.utios import timezone
+
+model에 데이터를 저장하는 방법
+    1. 모델명(모델변수1="저장할텍스트", 모델변수2=저장할무언가).save()                 ex) Student(name="류지원", 학번=143222).save()
+    2. 변수에 넣어 저장하는방법(1번 형식과 거의 비슷)
+        2-1. 변수명 = 모델명(모델변수1="저장할텍스트", 모델변수2=저장할무언가)          ex) student_row1 = Student(name="류지원", 학번=143222)
+        2-2. 변수명.save()                                                          ex) student_row1.save()
+
+model에서 레코드를 꺼내는 방법
+    1. 모든 레코드를 꺼내는 방법
+        1-1. Student.objects.all()
+        1-2. student_row = Student.objects.all()
+            -> student_row[1]
+            -> student_row[2]
+
+    2. 값을 명시하여 꺼내는 방법          
+            -> 모델명.objects.get(모델변수=원하는값)                 ex) Student.objects.filter(pk=1)           ex2) student_row1 = Student.objects.filter(pk=1)
+
+    3. 필터를 이용하여 꺼내는 방법
+        3-1. 데이터의 시작부분에서 값이 일치하는 레코드를 꺼내는 방법.    
+            -> 모델명.objects.filter(모델변수__startswith=원하는값)         ex) Student.objects.filter(name__startswith="류)
+
+model의 레코드 내 데이터를 꺼내는 방법
+    1. 변수를 이용하지 않고 꺼내는 방법
+        -> Student.objects.all()[1].name
+    2. 변수를 이용하여 꺼내는 방법
+        -> Student_row[1].name
+
+model의 레코드 개수를 세어주는 함수
+    모델명.objects.all().count()
+-------------------------------------------------------------------------------------------------------------------------------------------------------
+
+다음에 배워야 할 SKILL
+security 배우기
+template engine -> python과 html을 분리할 수 있음.

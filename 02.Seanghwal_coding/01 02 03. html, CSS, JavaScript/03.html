@@ -1,0 +1,184 @@
+<!doctype html>
+<html>
+    <head>
+        <title>WEB1 - JavaScript</title>
+        <meta charset="utf-8">
+
+        <!-- jQuery CDN (Content delivery Network) 활용 ()-->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+        
+        <!-- <link rel="stylesheet" href="style.css"> -->
+        <script src="colors.js"></script>
+
+        <!-- google anaytics-->
+        <script async src="https://www.googletagmanager.com/gtag/js?id=G-CNC7QTBT9M"></script>
+        <script>
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+
+            gtag('config', 'G-CNC7QTBT9M');
+        </script>
+        <!-- google anaytics-->
+    </head>
+
+    <body>
+        <h1><a href="index.html">WEB</a></h1>
+        <input type="button" value="night" onclick="nightDayHandler(this);">
+        <br>
+        <br>
+        <!-- 계산기 -->
+        <div style="font-size:20px"> 계산기 </div>
+        <input type="text" id = "num1" size = "5" placeholder="숫자입력" value="25">
+        <input type="text" id = "num2" size = "5" placeholder="숫자입력" value="5">
+        <input type="button" value="계산" onclick="
+            sumnumber = sum(document.getElementById('num1').value, document.getElementById('num2').value);
+            alert(sumnumber);
+            ">
+        <script>
+            sumnumber = sum(document.getElementById('num1').value, document.getElementById('num2').value);
+            document.write("<div>"+sumnumber+"</div>");
+            document.createElement("div");
+            document.write(document.domain + "<br>");
+            document.write(document.URL);
+
+        </script>
+
+
+
+
+
+
+        <!-- 목차 -->
+        <div id="grid">
+            <ol>
+                <li><a href="01.html">HTML</a></li>
+                <li><a href="02.html">CSS</a></li>
+                <li><a href="03.html">JavaScript</a></li>
+            </ol>
+        
+
+
+            <!-- 본문 -->
+            <div id="article">
+                <h2>JavaScript</h2>
+
+                <script>        //배열공부
+                    document.write("<div style='font-size:40px'> 배열 공부<br></div>")
+                    var family = ['father', 'mother', 'me', 'sister', 'brother'];
+                    i = 0;
+                    while (i < family.length) {
+                        document.write("<span><a href ='http://www.naver.com/" + family[i] + "'>" + i + ". " + family[i] + "<br></a></span>");
+                        i += 1;
+                    }
+                </script>
+
+                <br><br>
+                
+                <script>        //객체 공부 (문자열을 품은 객체)
+                    document.write("<div style='font-size:40px'>객체 공부 (문자열을 품은 객체)<br></div>")
+                    var coworkers = {
+                        "programmer" : "egoing",
+                        "designer" : "leezche",
+                    };
+                    document.write("programmer : " + coworkers.programmer + "<br>");
+                    document.write("designer : " + coworkers.designer + "<br>");
+                    coworkers.bookkeeper = "duru";
+                    document.write("bookkeeper : " + coworkers.bookkeeper + "<br>");
+                    coworkers["data scientist"] = "teaho";
+                    document.write("data scientist : " + coworkers["data scientist"] + "<br>");
+                </script>
+
+                <br><br>
+
+                <script>    // 반복문을 이용한 객체 출력.
+                    document.write("<div style='font-size:40px'>반복문을 이용한 객체 출력<br></div>")
+                    for(var key in coworkers) {
+                        document.write(key + " : " + coworkers[key] + "<br>");
+                    }
+                </script>
+
+                <br><br>
+
+                <script>
+                    document.write("<div style='font-size:40px'>반복문 함수를 이용한 객체 출력<br></div>")
+                    coworkers.showAll = function() {
+                        for(var key in this) {
+                            document.write(key + " : " + this[key] + "<br>");
+                        }
+                    }
+                    coworkers.showAll()
+
+                </script>
+
+
+
+
+
+
+
+
+
+
+            </div>
+        </div>
+
+
+
+
+
+        <!-- disqus comment function -->
+        <div>
+            <div id="disqus_thread"></div>
+            <script>
+                /**
+                *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+                *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables    */
+                /*
+                var disqus_config = function () {
+                this.page.url = PAGE_URL;  // Replace PAGE_URL with your page's canonical URL variable
+                this.page.identifier = PAGE_IDENTIFIER; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+                };
+                */
+                (function() { // DON'T EDIT BELOW THIS LINE
+                var d = document, s = d.createElement('script');
+                s.src = 'https://web1-zdmrozcztr.disqus.com/embed.js';
+                s.setAttribute('data-timestamp', +new Date());
+                (d.head || d.body).appendChild(s);
+                })();
+            </script>
+            <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+        </div>
+        <!-- /disqus comment function -->
+
+        <div>
+            <!--Start of Tawk.to Script-->
+            <script type="text/javascript">
+            var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
+            (function(){
+            var s1=document.createElement("script"),s0=document.getElementsByTagName("script")[0];
+            s1.async=true;
+            s1.src='https://embed.tawk.to/6348d92b54f06e12d89a1957/1gfa90kch';
+            s1.charset='UTF-8';
+            s1.setAttribute('crossorigin','*');
+            s0.parentNode.insertBefore(s1,s0);
+            })();
+            </script>
+            <!--End of Tawk.to Script-->
+        </div>
+
+        <div class="coupang-partners">
+            <div>
+                <iframe src="https://coupa.ng/cdbDm7" width="120" height="240" frameborder="0" scrolling="no" referrerpolicy="unsafe-url"></iframe>
+            </div>
+
+            <div>
+                <script src="https://ads-partners.coupang.com/g.js"></script>
+                <script>
+                    new PartnersCoupang.G({"id":612265,"template":"carousel","trackingCode":"AF0546925","width":"680","height":"140"});
+                </script>
+            </div>
+        </div>
+
+    </body>
+</html>

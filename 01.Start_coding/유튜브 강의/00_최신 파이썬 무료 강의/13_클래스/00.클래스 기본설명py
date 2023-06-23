@@ -1,0 +1,39 @@
+"""
+클래스  :   제품의 설계도
+객체    :   설계도로 만든 제품
+속성    :   클래스안의 변수
+메서드  :   클래스안의 함수
+생성자  :   객체를 만들 때 실행되는 함수
+인스턴스:   메모리에 살아있는 객체
+"""
+
+"""
+### class의 구조 ###
+class 클래스
+    def 메서드이름(self) :      # --> 메서드는 클래스 안의 함수를 말함. 항상 self를 매개변수로 가지고 있다.
+        명령블록
+"""
+
+"""
+### class 예시 ###
+class Monster :
+    def say(self) :
+        text = "나는 몬스터다"
+        print(text)
+"""
+
+"""
+### class 사용법 ###
+객체 = 클래스이름(생성자)               # --> 클래스를 객체로 생성한다. 생성자가 없으면 괄호안에 아무것도 쓰지않고 괄호를 닫는다. ex) shark = Monster()
+객체.메서드()                           # --> 객체의 메서드(클래스 객체 내의 함수)를 호출한다. ex) shark.say()
+"""
+
+class Monster :
+    def __init__(self, name) :              # --> 클래스 생성자
+        self.name = name
+    
+    def say(self) :
+        print(f'나는 {self.name}')
+
+shark = Monster("상어")                     # --> 괄호안에 쓰인 문자열은 생성자의 name에 할당되어진다. self에는 shark가 들어가게 된다. 결국 이 식은 shark가 self에, "상어"가 name에 할당되어 self.name = name은 shark.name = "상어"가 된다.
+shark.say()

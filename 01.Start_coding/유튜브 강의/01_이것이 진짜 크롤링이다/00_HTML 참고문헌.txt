@@ -1,0 +1,50 @@
+< > : 태그 표시, 시작태그와 종료태그로 이루어져 있음. ex) <h1> 스타트코딩 </h1>
+
+<태그명 속성명="속성값"> 내용 </태그명>
+<h1 id="title"> 스타트코딩 </h1>
+
+태그는 속성명과 속성값이 있을 수 있다.
+태그명은 보라색
+속성명은 주황색
+속성값은 파란색
+으로 이루어져 있다.
+
+태그의 종류
+[태그명]      [역할]
+div     ->  구역 나누기
+a       ->  링크
+h1      ->  제목
+p       ->  문단
+ul,li   ->  목록
+
+속성의 종류
+[속성명]    [역할]
+id      ->  태그에 부여하는 개인 id
+href    ->  링크
+class   ->  클래스. 여러 태그에 동시에 들어갈 수 있고, 각 태그가 공통점이 있는 경우 클래스를 쓰는 경우가 많아 크롤링이 자주 사용된다.
+
+
+부모태그와 자식태그 구조
+<부모태그>
+    <자식태그></자식태그>
+    <자식태그></자식태그>
+    <자식태그></자식태그>
+    <자식태그></자식태그>
+</부모태그>
+
+<div class="news_info">
+    <a href="주소1.com"></a>
+    <a href="주소2.com"></a>
+    <a href="주소3.com"></a>
+    <a href="주소4.com"></a>
+</div>
+
+
+
+URL
+https://search.naver.com/search/naver?where=news&query=삼성전자
+
+https://    search.naver.com/   search/naver?       where           =   news        &   query       =   삼성전자
+Protocol    Domain              Path                Para(key)           Para(value)     Para(key)       Para(value)
+
+
