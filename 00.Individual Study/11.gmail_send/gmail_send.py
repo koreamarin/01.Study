@@ -10,7 +10,7 @@ smtp_gmail.ehlo()
 smtp_gmail.starttls()
 
 #로그인
-smtp_gmail.login('cthouse2@gmail.com','hgtkarrfbtkgqgbd')   # 
+smtp_gmail.login('cthouse2@gmail.com','')   # 
 
 # 보낼 메시지 설정
 msg = MIMEText('내용 : 본문내용 테스트입니다.')
